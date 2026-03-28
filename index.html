@@ -15,11 +15,11 @@
 
         /* 车辆：侧视跑车，尺寸适配容器 */
         .car {
-            width: 160px;
-            height: 80px;
+            width: 180px;
+            height: 90px;
             position: absolute;
-            bottom: 25px;
-            right: -35px; /* 初始在右下角，稍微露出 */
+            bottom: 5px;
+            right: -10px; /* 初始在右下角，稍微露出 */
             background-image: url('https://pic.52112.com/180806/JPG-180806_137/snGKKqQOtT_small.jpg');
             background-size: contain;
             background-repeat: no-repeat;
@@ -33,21 +33,21 @@
             /* 0% ~ 83.3%：平稳斜向行驶（5秒）——从右下角到左上角 */
             0% {
                 right: -10px;
-                bottom: 10px;
+                bottom: 5px;
                 transform: translateY(0px) skewX(0deg);
             }
             41.65% {
                 transform: translateY(-1px) skewX(0deg); /* 轻微颠簸 */
             }
             83.3% {
-                right: 150px; /* 行驶到左上角，完整覆盖容器 */
-                bottom: 110px;
+                right: 130px; /* 行驶到左上角，完整覆盖容器 */
+                bottom: 105px;
                 transform: translateY(0px) skewX(0deg);
             }
             /* 83.3% ~ 91.6%：急刹阶段（0.5秒） */
             87% {
-                right: 147px; /* 微小前冲 */
-                bottom: 112px;
+                right: 127px; /* 微小前冲 */
+                bottom: 107px;
                 transform: translateY(2px) skewX(-3deg); /* 刹车前倾 */
             }
             89% {
@@ -58,8 +58,8 @@
             }
             /* 91.6% ~ 100%：静止阶段（0.5秒） */
             91.6%, 100% {
-                right: 147px;
-                bottom: 112px;
+                right: 17px;
+                bottom: 107px;
                 transform: translateY(0px) skewX(0deg);
             }
         }
