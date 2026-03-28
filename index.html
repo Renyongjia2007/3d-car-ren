@@ -2,28 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Animation Demo</title>
+    <title>Car Smooth Drive + Emergency Brake</title>
     <style>
-        .car-box {
+        .car-container {
             width: 200px;
             height: 200px;
             background-image: url('https://pic.52112.com/180806/JPG-180806_137/snGKKqQOtT_small.jpg');
-            background-size: cover;
+            background-size: 120% 120%;
             background-position: center;
-            animation: slide 8s linear infinite;
+            border-radius: 8px;
+            /* 总动画时长：平稳行驶4s + 急刹0.5s + 静止1.5s，循环 */
+            animation: driveAndBrake 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
-        @keyframes slide {
+        /* 定义行驶+急刹动画 */
+        @keyframes driveAndBrake {
+            /* 0%~66.6%：平稳行驶阶段（4秒） */
             0% {
-                background-position: 0% 50%;
+                background-position: 10% 50%;
+                transform: translateY(0px) skewX(0deg);
             }
-            100% {
-                background-position: 100% 50%;
+            33.3% {
+                transform: translateY(-1px) skewX(0deg);
+            }
+            66.6% {
+                background-position: 90% 50%;
+                transform: translateY(0px) skewX(0deg);
+            }
+            /* 66.6%~75%：急刹阶段（0.5秒）——车身前倾+快速减速+抖动 */
+            70% {
+                background-position: 92% 50%;
+                transform: translateY(2px) skewX(3deg); /* 前倾模拟刹车点头 */
+            }
+            72% {
+                transform: translateY(1px) skewX(-1deg); /* 轻微回弹抖动 */
+            }
+            74% {
+                transform: translateY(0px) skewX(1deg);
+            }
+            /* 75%~100%：静止阶段（1.5秒） */
+            75%, 100% {
+                background-position: 92% 50%;
+                transform: translateY(0px) skewX(0deg);
             }
         }
     </style>
 </head>
 <body>
-    <div class="car-box"></div>
+    <div class="car-container"></div>
 </body>
 </html>
