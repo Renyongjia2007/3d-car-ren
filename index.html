@@ -2,63 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Diagonal Drive & Brake (Side View)</title>
+    <title>Car Full Diagonal Drive & Brake</title>
     <style>
-        /* 容器：固定200px×200px，模拟路面 */
+        /* 容器：200px×200px，允许车辆完整显示 */
         .road {
-            width: 500px;
-            height: 500px;
+            width: 200px;
+            height: 200px;
             position: relative;
             overflow: hidden;
             background: #ffffff;
         }
 
-        /* 车辆：侧视跑车尺寸适配容器，初始在右下角 */
+        /* 车辆：侧视跑车，尺寸适配容器 */
         .car {
-            width: 180px;
-            height: 90px;
+            width: 160px;
+            height: 80px;
             position: absolute;
-            bottom: 0;
-            right: 0;
+            bottom: 10px;
+            right: -10px; /* 初始在右下角，稍微露出 */
             background-image: url('https://pic.52112.com/180806/JPG-180806_137/snGKKqQOtT_small.jpg');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            /* 动画：行驶4s → 急刹0.5s → 静止1.5s，循环 */
-            animation: diagonalDriveAndBrake 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            /* 动画：行驶5s → 急刹0.5s → 静止0.5s，总时长6s */
+            animation: diagonalDriveAndBrake 6s cubic-bezier(0.3, 0, 0.3, 1) infinite;
         }
 
-        /* 斜向行驶+急刹动画关键帧 */
+        /* 完整斜向行驶+急刹动画 */
         @keyframes diagonalDriveAndBrake {
-            /* 0% ~ 66.6%：平稳斜向行驶阶段（4秒） */
+            /* 0% ~ 83.3%：平稳斜向行驶（5秒）——从右下角到左上角 */
             0% {
-                right: 0;
-                bottom: 0;
+                right: -10px;
+                bottom: 10px;
                 transform: translateY(0px) skewX(0deg);
             }
-            33.3% {
+            41.65% {
                 transform: translateY(-1px) skewX(0deg); /* 轻微颠簸 */
             }
-            66.6% {
-                right: 20px; /* 行驶到左上角附近 */
+            83.3% {
+                right: 150px; /* 行驶到左上角，完整覆盖容器 */
                 bottom: 110px;
                 transform: translateY(0px) skewX(0deg);
             }
-            /* 66.6% ~ 75%：急刹阶段（0.5秒）——车身前倾+抖动 */
-            70% {
-                right: 17px; /* 微小前冲（车头向左，所以right减小） */
+            /* 83.3% ~ 91.6%：急刹阶段（0.5秒） */
+            87% {
+                right: 147px; /* 微小前冲 */
                 bottom: 112px;
-                transform: translateY(2px) skewX(-3deg); /* 前倾模拟刹车点头 */
+                transform: translateY(2px) skewX(-3deg); /* 刹车前倾 */
             }
-            72% {
+            89% {
                 transform: translateY(1px) skewX(1deg); /* 回弹抖动 */
             }
-            74% {
+            91% {
                 transform: translateY(0px) skewX(-1deg);
             }
-            /* 75% ~ 100%：静止阶段（1.5秒） */
-            75%, 100% {
-                right: 17px;
+            /* 91.6% ~ 100%：静止阶段（0.5秒） */
+            91.6%, 100% {
+                right: 147px;
                 bottom: 112px;
                 transform: translateY(0px) skewX(0deg);
             }
